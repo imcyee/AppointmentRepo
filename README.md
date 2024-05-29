@@ -1,3 +1,9 @@
+# Project init with 
+git clone https://github.com/nestjs/typescript-starter.git project
+
+Just bare repo with typescript prebuilt and some e2e folder 
+instead of the CLI just a preference 
+
 # spec.ts
 Domain logic can be seen from spec code
 
