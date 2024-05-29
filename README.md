@@ -1,73 +1,69 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+Role challenge: Senior Backend Engineer- Node.js
+Duration: 4 hours
+Task: Develop a simplified appointment system
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Description: 
+Develop a RESTful API for an appointment scheduling system that supports creating, viewing, and canceling appointments, with configurable slots and operational parameters.
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Business Logic:
+Each appointment slot is 30 minutes long.
+Appointments are available from 9 AM to 6 PM on weekdays.
+Prevent double bookings for the same slot.
 
-## Installation
+Expected output:
+API to
+Retrieve the available slots based on the selected date.
+The response should list the available slots and the time. Given that each appointment slot is 30 minutes and only 1 available slots
+[
+   {
+       "date": "2024-04-04",
+       "time": "10:00",
+       "available_slots": 1
+   },
+   {
+       "date": "2024-04-04",
+       "time": "10:30",
+       "available_slots": 1
+   },
+   {
+       "date": "2024-04-04",
+       "time": "11:00",
+       "available_slots": 0
+   },
+   ...
+]
 
-```bash
-$ npm install
-```
+Book the appointment based on the available slot.
+Validate if the slot is available
+Available slot should be deducted upon appointment made successfully
 
-## Running the app
 
-```bash
-# development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
+Additional Requirements:
+Basic Level Configuration:
+Allow configuration of the appointment slot duration (minimum 5 minutes).
+Enable setting the maximum number of slots per appointment (1 to 5 slots).
+Configure operational hours and days for scheduling appointments.
 
-# production mode
-$ npm run start:prod
-```
+Advanced Level Configuration (Database Enhancements):
+Implement functionality to set days off (e.g., public holidays).
+Allow setting unavailable hours within operational days (e.g., lunch breaks).
 
-## Test
+Note: You are freely to use your imagination on how the configuration like, can be either using env, json file or database. You also may wear a product hats to put an assumption for the cases, but make sure you note it down and showcase.
 
-```bash
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
+Tech stack:
+Framework: Any NodeJS framework, but NestJS is preferable
+Language: Typescript
+Database: Up to you with a strong justification on why you are using it for the system
 
-# test coverage
-$ npm run test:cov
-```
+Assessment Criteria:
+Functionality: API meets all specified features and handles edge cases.
+Code Quality and Organization: Clear structure, naming conventions, and documentation.
+Error Handling: Proper response codes and messages for invalid requests.
+Persistence: Effective use of a database for storing appointment and configuration data.
+Security: Basic considerations for API security (e.g., input validation).
+Documentation: A brief description on your implementation. Additional diagrams would be great to demonstrate your system design.
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Tips: You may check out Calendly or Google Appointment Schedule as reference
