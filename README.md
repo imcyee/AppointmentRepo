@@ -9,6 +9,9 @@ Just like an adapter for domain logic which doesnt have persistence layer
 
 # Edit configuration such as slot duration and rest day
 can be done by changing `admin.config.ts`
+Edit `operationHours` to change operation hour
+Edit `restDayInAWeek` to change operation day, 0: sunday 6: saturday
+Edit `maximumSlotPerAppointment` to change maximum bookable slot
 
 
 # Test description

@@ -41,6 +41,10 @@ export class Appointment {
 
     // check and compare with any booked time 
     const isWithinOperationHour = this.checkWithinOperationHour(time, slot)
+    if (slot > adminConfiguration.maximumSlotPerAppointment)
+      throw new Error(ErrorMessage.maximumSlotReached)
+
+
     if (!isWithinOperationHour)
       throw new Error(ErrorMessage.outOfOperationHour)
 
