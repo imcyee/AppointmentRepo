@@ -1,3 +1,17 @@
+# spec.ts
+Domain logic can be seen from spec code
+
+# Domain logic is encapsulated in entities
+can be seen in `./entities` folder
+
+# Entities virtual domain  
+Just like an adapter for domain logic which doesnt have persistence layer
+
+# Edit configuration such as slot duration and rest day
+can be done by changing `admin.config.ts`
+
+
+# Test description
 Role challenge: Senior Backend Engineer- Node.js
 Duration: 4 hours
 Task: Develop a simplified appointment system

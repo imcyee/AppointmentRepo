@@ -1,7 +1,7 @@
 import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
-import { parseTime } from "./datetime.parser";
 import { adminConfiguration } from "../admin.config";
 import { ErrorMessage } from "../errors/error";
+import { parseDate, parseTime } from "./datetime.parser";
 
 
 
@@ -44,6 +44,10 @@ export class Appointment {
     if (!isWithinOperationHour)
       throw new Error(ErrorMessage.outOfOperationHour)
 
+    const isInWeekend = this.checkFallInWeekend(date)
+    if (isInWeekend)
+      throw new Error(ErrorMessage.outOfWeekday)
+
     this.slot = slot;
     this.time = time;
     this.date = date;
@@ -51,10 +55,6 @@ export class Appointment {
 
   checkWithinOperationHour(time, slot) {
     const timeInDayjs = parseTime(time)
-    console.log('start');
-    console.log(timeInDayjs);
-    console.log(Appointment.operationStartHour);
-    console.log(Appointment.operationEndHour);
 
     const isTimeWithinOperationHour =
       timeInDayjs
@@ -64,12 +64,20 @@ export class Appointment {
         .isBefore(Appointment.operationEndHour)
 
 
-    console.log(isTimeWithinOperationHour);
     return isTimeWithinOperationHour
   }
 
-  checkForWeekend(date) {
+  checkFallInWeekend(date) {
+    const parsedDate = parseDate(date)
+    // check for weekend
+    const day = parsedDate.day()
 
+
+    // ops in rest day of the week
+    if (adminConfiguration.restDayInAWeek.includes(day))
+      return true
+    // if (day === adminConfiguration.restDayInAWeek[0] || day === adminConfiguration.restDayInAWeek[1])
+    return false
   }
 
 }

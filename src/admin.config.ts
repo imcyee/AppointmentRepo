@@ -8,5 +8,5 @@ export const adminConfiguration = {
     start: "09:00",
     end: "18:00"
   },
-  // operationDays: [0, 1, 2, 3, 4, 5, 6]
+  restDayInAWeek: [0, 6]
 }

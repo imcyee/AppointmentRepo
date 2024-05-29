@@ -15,18 +15,7 @@ describe('Appointment spec', () => {
       expect(newAppointment).toBeDefined()
     });
 
-    // it('should create a new appointments without error', () => {
-    //   const arrayLength = 5
-    //   const appointments = Array(arrayLength).fill(0).map(createRandomAppointment)
-    //   expect(appointments.length).toBe(arrayLength)
-    //   const appointmentsDomain = new Appointments(appointments)
-    //   expect(appointmentsDomain).toBeDefined()
-    // });
-
-
     it('should prevent double booking', () => {
-
-      // const appointments = Array(arrayLength).fill(0).map(createSameDateRandomAppointment)
       const date = "2024-05-29"
       const appointmentsData = [
         { date, time: "12:30", slot: 1 },
@@ -35,7 +24,6 @@ describe('Appointment spec', () => {
       ]
       const appointments = appointmentsData.map((a) => new Appointment(a))
       const appointmentsDomain = new Appointments(appointments)
-
       try {
         const newAppointment = new Appointment({
           date,
@@ -48,13 +36,30 @@ describe('Appointment spec', () => {
       } catch (error) {
         // should have no error
       }
-
-
-      // expect(appointments.length).toBe(arrayLength)
-      // expect(appointmentsDomain).toBeDefined()
     });
 
 
+    it('should throw error if it has crashes prevent double booking', () => {
+      const date = "2024-05-29"
+      const appointmentsData = [
+        { date, time: "12:30", slot: 1 },
+        { date, time: "14:30", slot: 2 },
+        { date, time: "16:30", slot: 1 },
+      ]
+      const appointments = appointmentsData.map((a) => new Appointment(a))
+      const appointmentsDomain = new Appointments(appointments)
+      try {
+        const newAppointment = new Appointment({
+          date,
+          slot: 2,
+          time: "14:00", // clashed with 14:30
+        })
+        const hasClash = appointmentsDomain.checkForClash(newAppointment)
+        expect(hasClash).toBeTruthy()
+      } catch (error) {
+        // should have no error
+      }
+    });
 
   });
 });
@@ -80,7 +85,7 @@ function createSameDateRandomAppointment() {
 }
 
 function createRandomWithinOperationTimestring() {
-  var hour = faker.number.int({ max: 18, min: 9 })
+  var hour = faker.number.int({ max: 17, min: 9 })
   var min = faker.number.int({ max: 59, min: 0 })
   return createTimestring(hour, min)
 }
